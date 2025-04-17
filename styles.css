@@ -475,3 +475,43 @@ footer p {
         width: 100%;
     }
 }
+/* === YouTube Background Video Fullscreen Fix === */
+.video-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.video-foreground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
+}
+
+.video-foreground iframe {
+  width: 177.77vh; /* 100 * (16 / 9) to match aspect ratio */
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  border: none;
+}
+
+/* Optional: Ensure content sits above video */
+.hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  top: 50%;
+  transform: translateY(-50%);
+  color: white;
+}
+
