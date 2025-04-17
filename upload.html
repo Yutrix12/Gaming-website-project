@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Upload Image - Social Media</title>
+    <style>
+        body {
+            background-color: #0f0f0f; /* Darker background for elegance */
+            color: #FFA500; /* Orange text */
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+
+        .upload-container {
+            background-color: #1a1a1a;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.8);
+            width: 400px;
+            animation: slideIn 1s ease-out; /* Animation for entrance */
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-100vh);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        h1 {
+            color: #FFA500;
+            margin-bottom: 30px;
+            font-size: 28px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            animation: fadeInText 2s ease-in;
+        }
+
+        @keyframes fadeInText {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .file-label {
+            background-color: #FFA500;
+            color: #121212;
+            padding: 14px 28px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 20px;
+            transition: background-color 0.3s ease;
+            position: relative;
+        }
+
+        .file-label:hover {
+            background-color: #ff8c00;
+        }
+
+        .file-label::after {
+            content: "📷";
+            position: absolute;
+            top: -8px;
+            right: -10px;
+            font-size: 20px;
+            animation: bounceIcon 1s infinite alternate;
+        }
+
+        @keyframes bounceIcon {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .caption-input {
+            width: 100%;
+            padding: 12px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            background-color: #2b2b2b;
+            border: 2px solid #FFA500;
+            border-radius: 10px;
+            color: #FFA500;
+            font-size: 16px;
+            resize: none;
+            height: 100px;
+            animation: fadeIn 1.2s ease-in;
+        }
+
+        .caption-input::placeholder {
+            color: #888;
+        }
+
+        .preview-container {
+            margin-top: 20px;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .preview-container img {
+            max-width: 100%;
+            max-height: 300px;
+            border: 2px solid #FFA500;
+            border-radius: 10px;
+            display: none;
+        }
+
+        button {
+            background-color: #FFA500;
+            color: #121212;
+            padding: 14px 28px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        button::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -50%;
+            width: 200%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.1);
+            z-index: -1;
+            transition: transform 0.4s ease;
+            transform: translateX(-100%);
+        }
+
+        button:hover::before {
+            transform: translateX(0);
+        }
+
+        button:hover {
+            background-color: #ff8c00;
+            transform: scale(1.05); /* Slight scaling effect on hover */
+        }
+
+        button:active {
+            transform: scale(0.98); /* Slight shrinking effect on click */
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="upload-container">
+        <h1>Upload Image</h1>
+        <form id="uploadForm" action="/upload" method="POST" enctype="multipart/form-data">
+            <label for="file-input" class="file-label">Choose Image</label>
+            <input id="file-input" type="file" name="image" accept="image/*" required>
+            
+            <div class="preview-container">
+                <img id="imagePreview" src="#" alt="Image Preview">
+            </div>
+
+            <textarea class="caption-input" name="caption" placeholder="Write a caption..." maxlength="200"></textarea>
+
+            <button type="submit">Upload</button>
+        </form>
+    </div>
+
+    <script>
+        const fileInput = document.getElementById('file-input');
+        const imagePreview = document.getElementById('imagePreview');
+
+        fileInput.addEventListener('change', function () {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    imagePreview.src = e.target.result;
+                    imagePreview.style.display = 'block'; // Show the preview
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        const uploadButton = document.querySelector('button');
+        uploadButton.addEventListener('click', function () {
+            this.classList.add('clicked');
+            setTimeout(() => this.classList.remove('clicked'), 500); // Reset animation after click
+        });
+    </script>
+</body>
+</html>

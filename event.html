@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Events</title>
+    <style>
+        body {
+            background-color: #1c1c1c;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            padding: 20px;
+        }
+
+
+        .background-image {
+            background-image: url('events.jpg'); /* Add your background image URL */
+            height: 100vh; /* Full viewport height */
+            background-size: cover; /* Cover the entire area */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #find-events {
+            background-color: #333;
+            color: #fff;
+            border: 1px solid #555;
+            padding: 10px;
+            margin: 20px;
+            font-size: 16px;
+        }
+
+        .image-grid {
+            display: flex;
+            justify-content: space-around;
+            margin: 40px 0;
+        }
+
+        .image-box {
+            width: 300px;
+            background-color: #222;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .image-box img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .caption {
+            margin-top: 10px;
+        }
+
+        .read-more {
+            color: #1e90ff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .read-more:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header></header>
+        <nav class="navbar">
+            <ul class="navbar-menu">
+                <li class="dropdown">
+                    <a href="index.html">Home</a>
+                </li>
+                <li class="dropdown">
+                    <a href="aboutus.html">Who We Are</a>
+                </li>
+                <li class="dropdown">
+                    <a href="news.html">News</a>
+                </li>
+                <li class="dropdown">
+                    <a href="content.html">Content</a>
+                </li>
+                <li class="dropdown">
+                    <a href="topic_page.html">Discussion</a>
+                </li>
+                <li class="dropdown"></li>
+                    <a href="events.html">Event</a>
+                </li>
+            </ul>
+        
+            <div class="navbar-right">
+                <div class="search-box">
+                    <input type="text" placeholder="Search">
+                    <i class="fas fa-search"></i>
+                </div>
+            </div>
+        </nav>
+        
+        
+    </header>
+
+    <div class="background-image">
+        <h1></h1>
+    </div>
+
+    <div class="content">
+        <select id="find-events">
+            <option value="">Find events</option>
+            <option value="Afghanistan">Afghanistan</option>
+            <option value="Albania">Albania</option>
+            <option value="Algeria">Algeria</option>
+            <!-- Add more country options as needed -->
+            <option value="Zimbabwe">Zimbabwe</option>
+        </select>
+
+        <section class="image-grid">
+            <div class="image-box">
+                <img src="event1.jpg" alt="Event Image 1">
+                <div class="caption">
+                    <p>Twitchcon is coming to San Diego, 2025! Make sure to grab your tickets and join us</p>
+                    <a href="https://www.twitchcon.com/san-diego-2025/" class="read-more">Read More</a>
+                </div>
+            </div>
+
+            <div class="image-box">
+                <img src="event2.jpg" alt="Event Image 2">
+                <div class="caption">
+                    <p>Love playing competitive Valorant? The first tournaments are ready for this week! We're offering over $300+ in cash prizing!</p>
+                    <a href="https://discord.com/channels/322076397222887425/867594614734192680/868315196731555881" class="read-more">Read More</a>
+                </div>
+            </div>
+
+            <div class="image-box">
+                <img src="event3.jpg" alt="Event Image 3">
+                <div class="caption">
+                    <p>SAVE THE DATE: Calling all women gamers! Join us on 26 April 2024, for the Women's Game Jam Meet-up at Goethe-Institut South Africa.</p>
+                    <a href="https://www.instagram.com/goethejoburg/p/C58txTFo-U8/?img_index=2" class="read-more">Read More</a>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>About Us - Gamescored</title>
+    <style>
+        /* General reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Container setup */
+        body {
+            background: linear-gradient(45deg, #000000, #080404); /* Black and dark grey ombre */
+            font-family: 'Arial', sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden; /* Prevent scrolling */
+        }
+
+        /* Main container */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            background-color: rgba(20, 20, 20, 0.8); /* Semi-transparent background */
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5); /* Shadow for depth */
+            backdrop-filter: blur(10px); /* Frosted glass effect */
+            transition: transform 0.3s; /* Container hover effect */
+        }
+
+        /* Container hover effect */
+        .container:hover {
+            transform: scale(1.02);
+        }
+
+        /* Title section */
+        h1 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Text shadow for depth */
+            position: relative;
+            overflow: hidden; /* Prevent overflow of text shadow */
+        }
+
+        /* Text section */
+        .text-section {
+            color: white;
+            padding: 20px;
+            font-size: 1.2rem;
+            line-height: 1.8; /* Increased line height for better readability */
+        }
+
+        /* Spacing between paragraphs */
+        .text-section p {
+            margin-bottom: 20px; /* Increased spacing between paragraphs */
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            .text-section {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <ul class="navbar-menu">
+                <li class="dropdown">
+                    <a href="index.html">Home</a>
+                </li>
+                <li class="dropdown">
+                    <a href="aboutus.html">Who We Are</a>
+                </li>
+                <li class="dropdown">
+                    <a href="news.html">News</a>
+                </li>
+                <li class="dropdown">
+                    <a href="content.html">Content</a>
+                </li>
+                <li class="dropdown">
+                    <a href="topic_page.html">Discussion</a>
+                </li>
+                <li class="dropdown"></li>
+                    <a href="event.html">Discussion</a>
+                </li>
+            </ul>
+        
+            <div class="navbar-right">
+                <div class="search-box">
+                    <input type="text" placeholder="Search">
+                    <i class="fas fa-search"></i>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <h1>About Us</h1>
+        <div class="text-section">
+            <p>At the heart of Gamescored are its visionary founders: Yuvraj, Agamya, and Shaina. Together, they have crafted a vibrant community where gamers of all backgrounds can unite.</p>
+
+            <p>Yuvraj, a dedicated gamer and tech enthusiast, envisioned a space where players could not only connect but thrive by sharing their passion for gaming. His technical expertise and love for creating seamless digital experiences have made Gamescored a hub for gamers to engage and explore.</p>
+
+            <p>Agamya, with her deep understanding of community building and leadership, brought her passion for inclusivity to Gamescored. She ensured that the platform was accessible to everyone, from casual players to competitive pros, fostering an environment where every voice is valued. Agamya’s organizational skills and love for strategic play have shaped Gamescored’s exciting events, which bring the community closer together.</p>
+
+            <p>Shaina, the creative force behind the platform, combined her love for storytelling with game design, helping shape Gamescored’s unique brand identity. Her creativity has inspired gamers to not just play but share their stories, turning Gamescored into a space where epic gaming moments live on. Together, Yuvraj, Agamya, and Shaina have built a gaming community that’s more than a website—it’s a movement.</p>
+        </div>
+    </div>
+</body>
+</html>

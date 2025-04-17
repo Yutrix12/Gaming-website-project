@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Sign Up</title>
+    <style>
+        /* Internal CSS for Signup Page */
+        body {
+            background-color: #111; /* Dark background */
+            color: #fff;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Ensure full height for footer positioning */
+        }
+
+        .login-container {
+            background-color: rgba(0, 0, 0, 0.8); /* Dark background with transparency */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            margin: 200px auto; /* Center horizontally and add top margin */
+            flex: 1; /* Allow to grow and take available space */
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Center vertically */
+            align-items: center; /* Center children */
+        }
+
+        .login-container h1 {
+            margin-bottom: 20px;
+        }
+
+        .login-container .form-group {
+            position: relative;
+            margin-bottom: 15px;
+            width: 100%; /* Ensure full width for input fields */
+        }
+
+        .login-container label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .login-container input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #555;
+            border-radius: 5px;
+            background: #222;
+            color: #fff;
+        }
+
+        .login-container button {
+            background-color: #f60;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .login-container button:hover {
+            background-color: #ff792f;
+            transform: scale(1.05);
+        }
+
+        .login-container p {
+            margin-top: 15px;
+        }
+
+        .login-container a {
+            color: #f60;
+        }
+
+        .login-container a:hover {
+            color: #ff792f;
+        }
+
+        footer {
+            background-color: #222;
+            padding: 20px 5%;
+            text-align: center;
+            color: #999;
+            margin-top: auto; /* Push footer to the bottom */
+        }
+
+        footer p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="navbar-left">
+                <a href="#" class="logo">
+                    <i class="fas fa-gamepad"></i>
+                </a>
+            </div>
+            <ul class="navbar-menu">
+                <li class="dropdown">
+                    <a href="index.html">Home</a>
+                </li>
+                <li class="dropdown">
+                    <a href="aboutus.html">Who We Are</a>
+                </li>
+                <li class="dropdown">
+                    <a href="news.html">News</a>
+                </li>
+                <li class="dropdown">
+                    <a href="content.html">Content</a>
+                </li>
+                <li class="dropdown">
+                    <a href="topic_page.html">Discussion</a>
+                </li>
+            </ul>
+            <div class="navbar-right">
+                <div class="search-box">
+                    <input type="text" placeholder="Search">
+                    <i class="fas fa-search"></i>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Signup Section -->
+    <section id="signup" style="flex: 1; display: flex; justify-content: center; align-items: flex-start; margin-top: 20px;">
+        <div class="login-container">
+            <h1>Sign Up</h1>
+            <form id="signupForm">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirm-password">Confirm Password</label>
+                    <input type="password" id="confirm-password" name="confirm-password" required>
+                </div>
+                <button type="submit" class="cta-button">Sign Up</button>
+            </form>
+            <p>Already have an account? <a href="login.html">Log in</a></p>
+        </div>
+    </section>
+    
+    <footer>
+        <p>&copy; 2024 Your Website. All Rights Reserved.</p>
+    </footer>
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDrMnHq2EnDTgDpTnBOvkgBlhatQeWEj2s",
+            authDomain: "gamescored-christ.firebaseapp.com",
+            projectId: "gamescored-christ",
+            storageBucket: "gamescored-christ.appspot.com",
+            messagingSenderId: "381303784116",
+            appId: "1:381303784116:web:8ab20afdd496c941f50de1",
+            measurementId: "G-WPTKN23X72"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth();
+
+        // Handle signup form submission
+        const signupForm = document.getElementById('signupForm');
+        signupForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+
+            if (password !== confirmPassword) {
+                alert("Passwords do not match!");
+                return;
+            }
+
+            // Firebase user creation
+            createUserWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    const user = userCredential.user;
+                    console.log('User created:', user);
+                    alert('Signup successful!');
+                    // Optionally, redirect to another page after signup
+                })
+                .catch((error) => {
+                    console.error('Error during signup:', error.message);
+                    alert('Signup failed: ' + error.message);
+                });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Discussion Forum</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #121212;
+            color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .main {
+            flex: 1;
+            padding: 1rem;
+            margin-top: 70px; /* Adjust this value based on the height of your navbar */
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .messages-container {
+            max-height: 60vh;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        /* Bullet trails */
+        @keyframes bullet-trail {
+            0% { transform: translateX(100vw); opacity: 1; }
+            100% { transform: translateX(-100vw); opacity: 0; }
+        }
+
+        .bullet-trail {
+            position: absolute;
+            top: 50%;
+            width: 5px;
+            height: 2px;
+            background: radial-gradient(circle, #ff0, #ff6600);
+            animation: bullet-trail 1s infinite ease-in-out;
+        }
+
+        .message-box, .reply-box {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background-color: rgba(30, 30, 30, 0.9);
+            backdrop-filter: blur(5px);
+            border-radius: 10px;
+            border-left: 4px solid #ff6600;
+            animation: fadeIn 0.5s ease, slideInGunfire 0.5s ease, impactGlow 1.5s ease;
+            box-shadow: 0 0 10px rgba(255, 100, 0, 0.6);
+            position: relative;
+        }
+
+        .reply-box {
+            margin-left: 2rem;
+            border-color: #ff9c33;
+        }
+
+        .message-options {
+            text-align: right;
+            margin-top: 0.5rem;
+        }
+
+        .message-options button {
+            padding: 0.5rem 1rem;
+            background-color: rgba(255, 102, 0, 0.7);
+            border: none;
+            color: #fff;
+            font-size: 0.85rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            backdrop-filter: blur(3px);
+            text-shadow: 0 0 5px #ff6600;
+        }
+
+        .message-options button:hover {
+            background-color: #e55d00;
+            box-shadow: 0 0 15px #ff6600;
+        }
+
+        footer {
+            background-color: rgba(30, 30, 30, 0.9);
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            backdrop-filter: blur(10px);
+        }
+
+        input[type="text"] {
+            width: 80%;
+            padding: 0.75rem;
+            background-color: rgba(51, 51, 51, 0.5);
+            border: 1px solid rgba(68, 68, 68, 0.7);
+            color: #fff;
+            border-radius: 10px;
+            outline: none;
+            font-size: 1rem;
+            backdrop-filter: blur(3px);
+            transition: border-color 0.3s ease;
+            text-shadow: 0 0 5px #ff6600;
+        }
+
+        input[type="text"]:focus {
+            border-color: #ff6600;
+        }
+
+        button {
+            padding: 0.75rem 1.5rem;
+            background-color: rgba(255, 102, 0, 0.7);
+            color: white;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            text-shadow: 0 0 5px #ff6600;
+        }
+
+        button:hover {
+            background-color: #e55d00;
+            box-shadow: 0 0 15px #ff6600;
+        }
+
+        /* Animation keyframes */
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes slideInGunfire {
+            0% { transform: translateX(-100%) scale(0.9); opacity: 0; }
+            100% { transform: translateX(0) scale(1); opacity: 1; }
+        }
+
+        @keyframes impactGlow {
+            0% { box-shadow: 0 0 0 rgba(255, 255, 0, 0); }
+            50% { box-shadow: 0 0 25px rgba(255, 255, 0, 0.8); }
+            100% { box-shadow: 0 0 0 rgba(255, 255, 0, 0); }
+        }
+
+        @keyframes gunfire-flash {
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        /* Scrollbar styling */
+        .messages-container::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .messages-container::-webkit-scrollbar-thumb {
+            background-color: #ff6600;
+            border-radius: 4px;
+        }
+
+        .messages-container::-webkit-scrollbar-track {
+            background-color: #1e1e1e;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="navbar-left">
+                <a href="#" class="logo">
+                    <i class="fas fa-gamepad"></i>
+                </a>
+            </div>
+            
+            <!-- Hamburger menu for mobile view -->
+            <div class="hamburger">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        
+            <ul class="navbar-menu">
+                <li class="dropdown">
+                    <a href="index.html">Home</a>
+                </li>
+                <li class="dropdown">
+                    <a href="aboutus.html">Who We Are</a>
+                </li>
+                <li class="dropdown">
+                    <a href="news.html">News</a>
+                </li>
+                <li class="dropdown">
+                    <a href="content.html">Content</a>
+                </li>
+                <li class="dropdown">
+                    <a href="topic_page.html">Discussion</a>
+                </li>
+                <li class="dropdown"></li>
+                    <a href="event.html">Event</a>
+                </li>
+            </ul>
+            </div>
+        </nav>   
+    </header>
+    
+    <!-- Animated bullet trails -->
+    <div class="bullet-trail" style="top: 30%;"></div>
+    <div class="bullet-trail" style="top: 70%;"></div>
+
+    <div class="main">
+        <div class="messages-container" id="messagesContainer">
+            <!-- Messages will be displayed here -->
+        </div>
+    </div>
+    
+    <footer>
+        <input type="text" id="messageInput" placeholder="Type your message...">
+        <button onclick="sendMessage()">Send</button>
+    </footer>
+
+    <script>
+        let replyTarget = null;
+
+        function sendMessage(isReply = false) {
+            const messageInput = document.getElementById('messageInput');
+            const message = messageInput.value.trim();
+
+            if (message) {
+                const messageBox = document.createElement('div');
+                messageBox.classList.add(isReply ? 'reply-box' : 'message-box');
+                messageBox.innerText = message;
+
+                const optionsDiv = document.createElement('div');
+                optionsDiv.classList.add('message-options');
+                const replyButton = document.createElement('button');
+                replyButton.innerText = 'Reply';
+                replyButton.onclick = () => enableReply(messageBox);
+
+                optionsDiv.appendChild(replyButton);
+                messageBox.appendChild(optionsDiv);
+
+                const messagesContainer = replyTarget ? replyTarget : document.getElementById('messagesContainer');
+                messagesContainer.appendChild(messageBox);
+
+                messageInput.value = '';  // Clear input box
+                document.getElementById('messagesContainer').scrollTop = document.getElementById('messagesContainer').scrollHeight;  // Auto-scroll to the latest message
+                replyTarget = null;  // Reset reply target
+            }
+        }
+
+        function enableReply(messageElement) {
+            replyTarget = messageElement;
+            document.getElementById('messageInput').focus();  // Focus on the input box
+        }
+
+        // Enter key functionality
+        document.getElementById('messageInput').addEventListener('keyup', function(event) {
+            if (event.key === 'Enter') {
+                sendMessage(replyTarget !== null);
+            }
+        });
+    </script>
+</body>
+</html>

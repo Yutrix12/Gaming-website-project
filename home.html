@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <style>
+        /* General reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Container setup */
+        body {
+            background: linear-gradient(45deg, #000000, #080404); /* Black and dark grey ombre */
+            font-family: 'Arial', sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden; /* Prevent scrolling */
+        }
+
+        /* Main container */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            height: 80vh;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            background-color: rgba(20, 20, 20, 0.8); /* Semi-transparent background */
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5); /* Shadow for depth */
+            backdrop-filter: blur(10px); /* Frosted glass effect */
+            transition: transform 0.3s; /* Container hover effect */
+        }
+
+        /* Container hover effect */
+        .container:hover {
+            transform: scale(1.02);
+        }
+
+        /* Content area */
+        .content {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Image section */
+        .image-section {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image {
+            border-radius: 30px;
+            width: 80%;
+            height: auto;
+            object-fit: cover;
+            box-shadow: 0 4px 8px rgba(64, 0, 0, 0.5);
+            transition: transform 0.3s ease; /* Image hover effect */
+        }
+
+        /* Image hover effect */
+        .image:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(64, 0, 0, 0.7);
+        }
+
+        /* Text section */
+        .text-section {
+            flex: 1;
+            color: white;
+            padding: 20px;
+        }
+
+        .text-section h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Text shadow for depth */
+        }
+
+        .text-section p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        /* Button */
+        .sign-in-button {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #f59002; /* Orange */
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(255, 130, 6, 0.5); /* Soft shadow */
+        }
+
+        /* Glowy hover effect */
+        .sign-in-button:hover {
+            background-color: #ff8000; /* Darker orange on hover */
+            transform: scale(1.1); /* Slightly enlarge button on hover */
+            box-shadow: 0 0 30px rgba(255, 130, 6, 0.8), 0 0 40px rgba(255, 11, 11, 0.6), 0 0 60px rgba(253, 212, 50, 0.4); /* Glowing effect */
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+            }
+            .image {
+                width: 90%;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <div class="image-section">
+                <img src="home.jpg" alt="Image" class="image">
+            </div>
+            <div class="text-section">
+                <h1>GAMESCORED</h1>
+                <p>Welcome to Gamescored, the ultimate hub for gamers who live and breathe gaming! At Gamescored, we believe that gaming is more than just a pastime – it’s a lifestyle. Our community is built for gamers, by gamers, where you can explore new titles, connect with fellow players, and share your epic gaming experiences. Whether you're into casual gaming or competitive play, Gamescored offers a platform where everyone’s voice is heard.
+
+                    We also organize exciting events, from local meetups to online gaming nights, where you can engage with the community, showcase your skills, and build lasting friendships. No matter your gaming style, Gamescored is the place to level up your gaming life. Jump into the fun, connect with passionate gamers, and become part of something bigger. Let’s play, share, and grow together! 
+                </p>
+            </div>
+        </div>
+        <a href="signup.html">
+            <button class="sign-in-button">Sign In</button>
+        </a>
+    </div>
+
+    <script>
+        document.querySelector('.sign-in-button').addEventListener('click', function() {
+            // You can add any functionality here before redirecting
+            console.log("Sign In button clicked!");
+            // Redirect to the login page
+            window.location.href = 'login.html';
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Login</title>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="navbar-left">
+                <a href="#" class="logo">
+                    <i class="fas fa-gamepad"></i>
+                </a>
+            </div>
+            <ul class="navbar-menu">
+                <li class="dropdown">
+                    <a href="index.html">Home</a>
+                </li>
+                <li class="dropdown">
+                    <a href="aboutus.html">Who We Are</a>
+                </li>
+                <li class="dropdown">
+                    <a href="news.html">News</a>
+                </li>
+                <li class="dropdown">
+                    <a href="content.html">Content</a>
+                </li>
+                <li class="dropdown">
+                    <a href="topic_page.html">Discussion</a>
+                </li>
+                <li class="dropdown"></li>
+                    <a href="event.html">Event</a>
+                </li>
+            </ul>
+            <div class="navbar-right">
+                <div class="search-box">
+                    <input type="text" placeholder="Search">
+                    <i class="fas fa-search"></i>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Login Section -->
+    <section id="login">
+        <div class="login-container">
+            <h1>Login</h1>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" class="cta-button">Login</button>
+            </form>
+            <p>Don't have an account? <a href="signup.html">Sign up</a></p>
+        </div>
+    </section>
+    
+    <footer>
+        <p>&copy; 2024 Your Website. All Rights Reserved.</p>
+    </footer>
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDrMnHq2EnDTgDpTnBOvkgBlhatQeWEj2s",
+            authDomain: "gamescored-christ.firebaseapp.com",
+            projectId: "gamescored-christ",
+            storageBucket: "gamescored-christ.appspot.com",
+            messagingSenderId: "381303784116",
+            appId: "1:381303784116:web:8ab20afdd496c941f50de1",
+            measurementId: "G-WPTKN23X72"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth();
+
+        // Handle login form submission
+        const loginForm = document.getElementById('loginForm');
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            // Firebase user login
+            signInWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    const user = userCredential.user;
+                    console.log('User logged in:', user);
+                    alert('Login successful!');
+                    // Optionally redirect to another page after login
+                    window.location.href = 'index.html';  // Example redirection after login
+                })
+                .catch((error) => {
+                    console.error('Error during login:', error.message);
+                    alert('Login failed: ' + error.message);
+                });
+        });
+    </script>
+</body>
+</html>
